@@ -1,0 +1,154 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing Text</title>
+    <style>
+        /* Apply initial styles to the text */
+        .play-text {
+            color: black;
+            font-size: 40px;
+            transition: opacity 1s; /* Smooth transition for opacity */
+            position: relative; /* Position the container */
+        }
+
+        /* Apply styles to individual slogans */
+        .slogan {
+            opacity: 0; /* Initially hidden */
+            margin-bottom: 20px; /* Add space between slogans */
+            font-weight: bold; /* Make text bold */
+            color: hotpink; /* Make text pink */
+        }
+
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+            nav ul li {
+                float: left;
+            }
+
+                nav ul li a {
+                    display: block;
+                    color: black; /* default text color */
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                    transition: color 0.3s; /* smooth transition for color change */
+                    font-weight: bold; /* Make the text bold */
+                }
+
+                    nav ul li a:hover {
+                        color: red; /* Change text color on hover */
+                    }
+
+        hr {
+            border: 0; /* Remove default border */
+            border-top: 1px solid black; /* Add border style */
+            border-bottom: 1px solid black;
+            margin: 200px 0; /* Adjust margin as needed */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="width:1270px;left:-10%">
+            <ul>
+                <li><a href="#" style="color:white">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+
+    </div>
+
+
+
+    <img src="~/css/womenshealtg.gif" alt="..." style="height:450px;width:420px;position:absolute;top:45%;left:59%">
+
+
+    <div class="play-text">
+        <!-- Each slogan is initially empty -->
+    </div>
+
+    <script>
+        // JavaScript to animate the text and change the slogan
+        const slogans = [
+            "Empowering Women,",
+            "Nurturing Health,",
+            "Your Guide to Fertility and Pregnancy Planning"
+        ];
+
+        function animateSlogans() {
+            const container = document.querySelector('.play-text');
+            container.innerHTML = ''; // Clear existing slogans
+
+            slogans.forEach((slogan, index) => {
+                const sloganElement = document.createElement('div'); // Create a new slogan element
+                sloganElement.classList.add('slogan');
+                sloganElement.textContent = slogan; // Set the text content to the current slogan
+                sloganElement.style.transitionDelay = `${index * 1}s`; // Add delay to each slogan
+                container.appendChild(sloganElement); // Append the slogan to the container
+
+                setTimeout(() => {
+                    sloganElement.style.opacity = '1'; // Show the slogan after a delay
+                }, 100); // Short delay before showing each slogan
+            });
+        }
+
+        // Initial call to start the animation
+        animateSlogans();
+
+        // Periodically restart the animation
+        setInterval(animateSlogans, (slogans.length + 1) * 1000); // Duration of each animation cycle
+    </script>
+
+    <h1 style="position:absolute;top:115%;font-weight:bold">
+        what would you like to do?
+    </h1>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="position:absolute;top:125%;height:270px">
+        <div class="col">
+            <div class="card h-100" style="width:270px">
+                <img src="~/css/track period.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    @* <h5 class="card-title">Track your periogd</h5> *@
+                    <a class="navbar-brand" asp-area="" asp-controller="PeriodTracker" asp-action="TrackPeriods"> Track your period</a>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col" style="position:absolute;height:270px;left:130%">
+            <div class="card h-100" style="width:270px">
+                <img src="~/css/positive.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    @*  <h5 class="card-title">Get pregnant</h5> *@
+                    <a class="navbar-brand" asp-area="" asp-controller="Fertility" asp-action="FertilityTracker"> Get Pregnant</a>
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
